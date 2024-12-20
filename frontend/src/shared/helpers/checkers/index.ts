@@ -1,0 +1,13 @@
+export * from './_types'
+
+export * from './is-string'
+export * from './is-boolean'
+export * from './is-undefined'
+export * from './is-null-or-undefined'
+export * from './is-primitive'
+export * from './is-object'
+export * from './is-function'
+export * from './is-date-object'
+export * from './is-regex'
+export * from './is-browser'
+export * from './is-deep-equal'
