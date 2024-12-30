@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Control, FieldValues, Resolver, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
+
 import { useTypedController } from '@hookform/strictly-typed'
 
 import { omitObjectProperty } from '@/src/shared/helpers'
@@ -22,7 +23,9 @@ export const useFormInitializer = <FormValues extends FieldValues = FieldValues>
 
   const methods = useForm({
     ...hookParams,
-    resolver: yupResolver(currentValidationSchema) as unknown as Resolver<FormValues>,
+    ...(currentValidationSchema && {
+      resolver: yupResolver(currentValidationSchema) as unknown as Resolver<FormValues>,
+    }),
     reValidateMode: 'onBlur',
   })
 

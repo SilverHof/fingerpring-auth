@@ -25,7 +25,7 @@ export interface CompoundSchema<FormValues extends FieldValues = FieldValues> {
 }
 
 export type UseFormInitializerArgs<FormValues extends FieldValues = FieldValues> = {
-  baseSchema: ValidationSchema<FormValues>
+  baseSchema?: ValidationSchema<FormValues>
   compoundSchemas?: CompoundSchema<FormValues>[]
   hookParams?: UseFormProps<FormValues>
 }
@@ -37,8 +37,8 @@ export type FormChildren = ReactNode | ReactNode[]
 export interface FormProps<FromValues extends FieldValues = FieldValues> extends OmittedFormHTMLAttributes {
   children?: FormChildren
   className?: string
-  onSubmit?: (data: FromValues, methods?: UseFormReturn<FromValues>) => Promise<unknown> | void
-  onError?: (errors?: FieldErrors<FromValues>, methods?: UseFormReturn<FromValues>) => Promise<unknown> | void
+  onSubmit?: (data: FromValues) => Promise<unknown> | void
+  onError?: (errors?: FieldErrors<FromValues>) => Promise<unknown> | void
 }
 
 export type OptimizeWatch =

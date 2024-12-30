@@ -1,5 +1,5 @@
 export interface Authorization {
-  login: string
+  email: string
   password: string
   rememberMe?: boolean
 }

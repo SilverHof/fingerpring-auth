@@ -16,7 +16,7 @@ export const useFormComponent =
   ({ children, className = '', onSubmit, onError, ...rest }: FormProps<FormValues>) => {
     const onFormSubmit: SubmitHandler<FormValues> = async (data) => {
       try {
-        await onSubmit?.(data, methods)
+        await onSubmit?.(data)
       } catch (error) {
         return Promise.reject(error)
       }
@@ -25,15 +25,7 @@ export const useFormComponent =
     return (
       <FormProvider {...methods}>
         <AdditionalFormProvider.Provider value={{ optimizeWatch }}>
-          <form
-            onSubmit={methods.handleSubmit(
-              (data) => onFormSubmit(data),
-              (data) => onError?.(data, methods)
-            )}
-            className={className}
-            {...rest}
-            noValidate
-          >
+          <form onSubmit={methods.handleSubmit(onFormSubmit, onError)} className={className} {...rest} noValidate>
             {children}
           </form>
         </AdditionalFormProvider.Provider>

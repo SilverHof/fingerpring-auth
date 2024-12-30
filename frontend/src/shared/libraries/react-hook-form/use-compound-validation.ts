@@ -6,11 +6,11 @@ import { FieldValues, UseFormSetFocus, UseFormWatch } from 'react-hook-form'
 import { CompoundSchema, ValidationSchema } from './_types'
 
 export type UseCompoundValidationArgs<FormValues extends FieldValues = FieldValues> = {
-  baseSchema: ValidationSchema<FormValues>
+  baseSchema: ValidationSchema<FormValues> | undefined
   compoundSchemas: CompoundSchema<FormValues>[] | undefined
   watch: UseFormWatch<FormValues>
   setFocus: UseFormSetFocus<FormValues>
-  setCurrentValidationSchema: (value: SetStateAction<ValidationSchema<FormValues>>) => void
+  setCurrentValidationSchema: (value: SetStateAction<ValidationSchema<FormValues> | undefined>) => void
 }
 
 export const useCompoundValidation = <FormValues extends FieldValues = FieldValues>({
@@ -30,7 +30,7 @@ export const useCompoundValidation = <FormValues extends FieldValues = FieldValu
       if (isCompoundSchemas) {
         for (const compoundSchema of compoundSchemas) {
           if (formValues[compoundSchema.key as string] === compoundSchema.valueToMatch) {
-            newSchema = baseSchema.concat(compoundSchema.schema) as ValidationSchema<FormValues>
+            newSchema = baseSchema?.concat(compoundSchema.schema) as ValidationSchema<FormValues>
             break
           }
         }

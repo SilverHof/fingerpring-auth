@@ -1,10 +1,9 @@
 import { JSX, SVGProps } from 'react'
 
 export interface Registration {
-  login: string
+  email: string
   password: string
   repeatPassword: string
-  method2FA: TFA_ENUM
 }
 
 export enum TFA_ENUM {
