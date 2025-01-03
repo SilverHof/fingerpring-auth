@@ -5,10 +5,7 @@ export interface Fingerprint {
   timezone: Timezone
   network?: Network
   application: Application
-  // webGL: WebGL
   canvas: string
-  // fonts: Fonts
-  // audioContext: AudioContext
 }
 
 export interface Browser {
