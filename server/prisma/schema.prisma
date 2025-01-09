@@ -1,0 +1,158 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./__generated__"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_URI")
+}
+
+model User {
+  id String @id @default(uuid())
+
+  email    String @unique
+  password String
+
+  role UserRole @default(REGULAR)
+
+  isVerified Boolean @default(false) @map("is_verified")
+
+  firstFingerprint String?  @map("first_fingerprint")
+  fingerprints     String[]
+  lastFingerprint  String?  @map("last_fingerprint")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("users")
+}
+
+model UserVerifyTokens {
+  id    String @id @default(uuid())
+  email String @unique
+
+  token String? @map("token")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("user_verify_tokens")
+}
+
+model SettingsFingerprint {
+  id String @id @default(uuid())
+
+  // browser settings
+  browserName         Boolean @default(true)
+  browserMajorVersion Boolean @default(true)
+  browserFullVersion  Boolean @default(true)
+  os                  Boolean @default(true)
+  osVersion           Boolean @default(true)
+  device              Boolean @default(true)
+  userAgent           Boolean @default(true)
+
+  // screen settings
+  screenWidth  Boolean @default(true)
+  screenHeight Boolean @default(true)
+  pixelRatio   Boolean @default(true)
+  colorDepth   Boolean @default(true)
+  orientation  Boolean @default(true)
+  availWidth   Boolean @default(true)
+  availHeight  Boolean @default(true)
+  innerWidth   Boolean @default(true)
+  innerHeight  Boolean @default(true)
+  deviceXDPI   Boolean @default(true)
+  deviceYDPI   Boolean @default(true)
+  isLandscape  Boolean @default(true)
+
+  // device settings
+  isTouchDevice       Boolean @default(true)
+  maxTouchPoints      Boolean @default(true)
+  deviceMemory        Boolean @default(true)
+  hardwareConcurrency Boolean @default(true)
+  isMobile            Boolean @default(true)
+  isDesktop           Boolean @default(true)
+  isTablet            Boolean @default(true)
+  isVirtualMachine    Boolean @default(true)
+  isOnline            Boolean @default(true)
+  platform            Boolean @default(true)
+  language            Boolean @default(true)
+  screenReader        Boolean @default(true)
+  cpu                 Boolean @default(true)
+  isHeadless          Boolean @default(true)
+  batteryStatus       Boolean @default(true)
+  vendor              Boolean @default(true)
+
+  // timezone settings
+  timezone           Boolean @default(true)
+  utcOffset          Boolean @default(true)
+  utcOffsetFormatted Boolean @default(true)
+  currentTime        Boolean @default(true)
+  localeTime         Boolean @default(true)
+  isDST              Boolean @default(true)
+  localeDateFormat   Boolean @default(true)
+
+  // network settings
+  ip              Boolean @default(true)
+  type            Boolean @default(true)
+  continent_code  Boolean @default(true)
+  continent_name  Boolean @default(true)
+  country_code    Boolean @default(true)
+  country_name    Boolean @default(true)
+  region_code     Boolean @default(true)
+  region_name     Boolean @default(true)
+  city            Boolean @default(true)
+  zip             Boolean @default(true)
+  latitude        Boolean @default(true)
+  longitude       Boolean @default(true)
+  location        Boolean @default(true)
+  connection_type Boolean @default(true)
+  ip_routing_type Boolean @default(true)
+  msa             Boolean @default(true)
+  dma             Boolean @default(true)
+  radius          Boolean @default(true)
+
+  // application settings
+  plugins               Boolean @default(true)
+  localStorageEnabled   Boolean @default(true)
+  sessionStorageEnabled Boolean @default(true)
+  indexedDBEnabled      Boolean @default(true)
+  cookiesEnabled        Boolean @default(true)
+  mediaDevices          Boolean @default(true)
+  serviceWorkerEnabled  Boolean @default(true)
+  languages             Boolean @default(true)
+  doNotTrack            Boolean @default(true)
+  pixelDepth            Boolean @default(true)
+
+  canvasActive Boolean @default(true)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("settings_fingerprints")
+}
+
+model Token {
+  id String @id @default(uuid())
+
+  email     String
+  token     String    @unique
+  type      TokenType
+  expiresIn DateTime  @map("expires_in")
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("tokens")
+}
+
+enum UserRole {
+  REGULAR
+  ADMIN
+}
+
+enum TokenType {
+  VERIFICATION
+  TWO_FACTOR
+  PASSWORD_RESET
+}

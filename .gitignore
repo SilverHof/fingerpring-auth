@@ -1,5 +1,5 @@
-nuxt
-frontend/node_modules
-frontend/.next
+client/node_modules
+client/.next
 
-backend/node_modules
+server/node_modules
+server/dist
