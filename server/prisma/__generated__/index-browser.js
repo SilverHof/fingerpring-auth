@@ -128,9 +128,8 @@ exports.Prisma.UserScalarFieldEnum = {
   password: 'password',
   role: 'role',
   isVerified: 'isVerified',
-  firstFingerprint: 'firstFingerprint',
+  currentFingerprint: 'currentFingerprint',
   fingerprints: 'fingerprints',
-  lastFingerprint: 'lastFingerprint',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -215,7 +214,8 @@ exports.Prisma.SettingsFingerprintScalarFieldEnum = {
   languages: 'languages',
   doNotTrack: 'doNotTrack',
   pixelDepth: 'pixelDepth',
-  canvasActive: 'canvasActive',
+  canvas: 'canvas',
+  webgl: 'webgl',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };

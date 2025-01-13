@@ -9,6 +9,7 @@
 	"importOrderSeparation": true,
 	"importOrderSortSpecifiers": true,
 	"importOrderCaseInsensitive": true,
+	"printWidth": 140,
 	"importOrderParserPlugins": [
 		"classProperties",
 		"decorators-legacy",

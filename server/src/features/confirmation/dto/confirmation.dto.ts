@@ -1,8 +1,4 @@
-import {
-	IsEmail,
-	IsNotEmpty,
-	IsString,
-} from 'class-validator'
+import { IsEmail, IsNotEmpty, IsString } from 'class-validator'
 
 export class ConfirmationDto {
 	@IsString({ message: 'Email должен быть строкой.' })
@@ -13,4 +9,8 @@ export class ConfirmationDto {
 	@IsString({ message: 'Токен должен быть строкой.' })
 	@IsNotEmpty({ message: 'Токен обязателен для заполнения.' })
 	token: string
+
+	@IsString({ message: 'currentFingerprint должен быть строкой.' })
+	@IsNotEmpty({ message: 'currentFingerprint обязателен для заполнения.' })
+	currentFingerprint: string
 }

@@ -17,6 +17,6 @@ export const getFingerprint = async (): Promise<Fingerprint> => {
     application: _getApplicationFingerprint(),
     canvas: await _getCanvasFingerprint(),
     webgl: await _getWebGLFingerprint(),
-    // network: await _getNetworkData().then((data) => data),
+    network: await _getNetworkData().then((data) => data),
   }
 }

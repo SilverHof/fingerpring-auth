@@ -3,7 +3,7 @@
 import { Controller } from 'react-hook-form'
 import { useAtomValue } from 'jotai'
 
-import { Confirmation, confirmationSchema, registrationEmailAtom } from '@/src/features'
+import { Confirmation, confirmationSchema, getFingerprint, userEmailAtom } from '@/src/features'
 import { ConfirmationEmailIcon } from '@/src/shared/assets/svg'
 import { Button, InputOtp } from '@nextui-org/react'
 
@@ -13,7 +13,7 @@ import { BaseFormWrapper } from '@/src/shared/ui'
 import { useConfirmationController } from './use-confirmation-controller'
 
 export const ConfirmationView = () => {
-  const registrationEmail = useAtomValue(registrationEmailAtom)
+  const userEmail = useAtomValue(userEmailAtom)
   const { Form, control } = useFormInitializer({
     baseSchema: confirmationSchema,
   })
@@ -23,10 +23,12 @@ export const ConfirmationView = () => {
     requests: { confirmation, isPending },
   } = useConfirmationController()
 
-  const onSubmitConfirm = (data: Confirmation) => {
+  const onSubmitConfirm = async (data: Confirmation) => {
+    const fingerprint = JSON.stringify(await getFingerprint())
     confirmation({
       token: data.token,
-      email: registrationEmail as string,
+      email: userEmail as string,
+      currentFingerprint: fingerprint,
     })
   }
 

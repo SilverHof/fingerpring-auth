@@ -6,7 +6,7 @@ export interface Registration {
   email: string
   password: string
   passwordRepeat: string
-  firstFingerprint: string
+  currentFingerprint: string
 }
 
 export enum TFA_ENUM {

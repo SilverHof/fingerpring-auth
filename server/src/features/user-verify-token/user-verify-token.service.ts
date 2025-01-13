@@ -46,20 +46,20 @@ export class UserVerifyTokenService {
 		return user
 	}
 
-	// public async update(userId: string, dto: UpdateUserDto) {
-	// 	const user = await this.findById(userId)
+	public async update(email: string, token: string) {
+		const user = await this.findByEmail(email)
 
-	// 	const updatedUser = await this.prismaService.user.update({
-	// 		where: {
-	// 			id: user.id
-	// 		},
-	// 		data: {
-	// 			email: dto.email
-	// 		}
-	// 	})
+		const updatedUser = await this.prismaService.userVerifyTokens.update({
+			where: {
+				id: user.id
+			},
+			data: {
+				token: token
+			}
+		})
 
-	// 	return updatedUser
-	// }
+		return updatedUser
+	}
 
 	public async deleteToken(email: string) {
 		const user = await this.findByEmail(email)

@@ -37,4 +37,31 @@ export class ConfirmationService {
 			message: 'Вы успешно подтвердили регистрацию'
 		}
 	}
+
+	public async authorization({
+		email,
+		token,
+		currentFingerprint
+	}: ConfirmationDto) {
+		const isNotExists = !(await this.userService.findByEmail(email))
+		const userVerifyCode =
+			await this.userVerifyCodeService.findByEmail(email)
+
+		if (isNotExists) {
+			throw new ConflictException('Такого пользователя не существует')
+		}
+
+		if (userVerifyCode.token === token) {
+			await this.userService.updateFingerprints({
+				email: email,
+				currentFingerprint: currentFingerprint
+			})
+		}
+
+		await this.onEndConfirmation(email)
+
+		return {
+			message: 'Вы успешно подтвердили регистрацию'
+		}
+	}
 }

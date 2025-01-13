@@ -20,5 +20,5 @@ export class AuthorizationDta {
 
 	@IsString({ message: 'Fingerprint должен быть строкой.' })
 	@IsNotEmpty({ message: 'Fingerprint не может быть пустым' })
-	fingerprint: string
+	currentFingerprint: string
 }

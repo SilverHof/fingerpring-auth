@@ -18,9 +18,8 @@ model User {
 
   isVerified Boolean @default(false) @map("is_verified")
 
-  firstFingerprint String?  @map("first_fingerprint")
-  fingerprints     String[]
-  lastFingerprint  String?  @map("last_fingerprint")
+  currentFingerprint String?  @map("current_fingerprint")
+  fingerprints       String[]
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -125,7 +124,8 @@ model SettingsFingerprint {
   doNotTrack            Boolean @default(true)
   pixelDepth            Boolean @default(true)
 
-  canvasActive Boolean @default(true)
+  canvas Boolean @default(true)
+  webgl  Boolean @default(true)
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")

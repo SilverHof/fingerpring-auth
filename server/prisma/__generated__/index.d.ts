@@ -1147,8 +1147,7 @@ export namespace Prisma {
     password: string | null
     role: $Enums.UserRole | null
     isVerified: boolean | null
-    firstFingerprint: string | null
-    lastFingerprint: string | null
+    currentFingerprint: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -1159,8 +1158,7 @@ export namespace Prisma {
     password: string | null
     role: $Enums.UserRole | null
     isVerified: boolean | null
-    firstFingerprint: string | null
-    lastFingerprint: string | null
+    currentFingerprint: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -1171,9 +1169,8 @@ export namespace Prisma {
     password: number
     role: number
     isVerified: number
-    firstFingerprint: number
+    currentFingerprint: number
     fingerprints: number
-    lastFingerprint: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -1186,8 +1183,7 @@ export namespace Prisma {
     password?: true
     role?: true
     isVerified?: true
-    firstFingerprint?: true
-    lastFingerprint?: true
+    currentFingerprint?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -1198,8 +1194,7 @@ export namespace Prisma {
     password?: true
     role?: true
     isVerified?: true
-    firstFingerprint?: true
-    lastFingerprint?: true
+    currentFingerprint?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -1210,9 +1205,8 @@ export namespace Prisma {
     password?: true
     role?: true
     isVerified?: true
-    firstFingerprint?: true
+    currentFingerprint?: true
     fingerprints?: true
-    lastFingerprint?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -1296,9 +1290,8 @@ export namespace Prisma {
     password: string
     role: $Enums.UserRole
     isVerified: boolean
-    firstFingerprint: string | null
+    currentFingerprint: string | null
     fingerprints: string[]
-    lastFingerprint: string | null
     createdAt: Date
     updatedAt: Date
     _count: UserCountAggregateOutputType | null
@@ -1326,9 +1319,8 @@ export namespace Prisma {
     password?: boolean
     role?: boolean
     isVerified?: boolean
-    firstFingerprint?: boolean
+    currentFingerprint?: boolean
     fingerprints?: boolean
-    lastFingerprint?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["user"]>
@@ -1339,9 +1331,8 @@ export namespace Prisma {
     password?: boolean
     role?: boolean
     isVerified?: boolean
-    firstFingerprint?: boolean
+    currentFingerprint?: boolean
     fingerprints?: boolean
-    lastFingerprint?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["user"]>
@@ -1352,9 +1343,8 @@ export namespace Prisma {
     password?: boolean
     role?: boolean
     isVerified?: boolean
-    firstFingerprint?: boolean
+    currentFingerprint?: boolean
     fingerprints?: boolean
-    lastFingerprint?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
@@ -1369,9 +1359,8 @@ export namespace Prisma {
       password: string
       role: $Enums.UserRole
       isVerified: boolean
-      firstFingerprint: string | null
+      currentFingerprint: string | null
       fingerprints: string[]
-      lastFingerprint: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["user"]>
@@ -1772,9 +1761,8 @@ export namespace Prisma {
     readonly password: FieldRef<"User", 'String'>
     readonly role: FieldRef<"User", 'UserRole'>
     readonly isVerified: FieldRef<"User", 'Boolean'>
-    readonly firstFingerprint: FieldRef<"User", 'String'>
+    readonly currentFingerprint: FieldRef<"User", 'String'>
     readonly fingerprints: FieldRef<"User", 'String[]'>
-    readonly lastFingerprint: FieldRef<"User", 'String'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
   }
@@ -3025,7 +3013,8 @@ export namespace Prisma {
     languages: boolean | null
     doNotTrack: boolean | null
     pixelDepth: boolean | null
-    canvasActive: boolean | null
+    canvas: boolean | null
+    webgl: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -3102,7 +3091,8 @@ export namespace Prisma {
     languages: boolean | null
     doNotTrack: boolean | null
     pixelDepth: boolean | null
-    canvasActive: boolean | null
+    canvas: boolean | null
+    webgl: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -3179,7 +3169,8 @@ export namespace Prisma {
     languages: number
     doNotTrack: number
     pixelDepth: number
-    canvasActive: number
+    canvas: number
+    webgl: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -3258,7 +3249,8 @@ export namespace Prisma {
     languages?: true
     doNotTrack?: true
     pixelDepth?: true
-    canvasActive?: true
+    canvas?: true
+    webgl?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -3335,7 +3327,8 @@ export namespace Prisma {
     languages?: true
     doNotTrack?: true
     pixelDepth?: true
-    canvasActive?: true
+    canvas?: true
+    webgl?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -3412,7 +3405,8 @@ export namespace Prisma {
     languages?: true
     doNotTrack?: true
     pixelDepth?: true
-    canvasActive?: true
+    canvas?: true
+    webgl?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -3562,7 +3556,8 @@ export namespace Prisma {
     languages: boolean
     doNotTrack: boolean
     pixelDepth: boolean
-    canvasActive: boolean
+    canvas: boolean
+    webgl: boolean
     createdAt: Date
     updatedAt: Date
     _count: SettingsFingerprintCountAggregateOutputType | null
@@ -3656,7 +3651,8 @@ export namespace Prisma {
     languages?: boolean
     doNotTrack?: boolean
     pixelDepth?: boolean
-    canvasActive?: boolean
+    canvas?: boolean
+    webgl?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["settingsFingerprint"]>
@@ -3733,7 +3729,8 @@ export namespace Prisma {
     languages?: boolean
     doNotTrack?: boolean
     pixelDepth?: boolean
-    canvasActive?: boolean
+    canvas?: boolean
+    webgl?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["settingsFingerprint"]>
@@ -3810,7 +3807,8 @@ export namespace Prisma {
     languages?: boolean
     doNotTrack?: boolean
     pixelDepth?: boolean
-    canvasActive?: boolean
+    canvas?: boolean
+    webgl?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
@@ -3891,7 +3889,8 @@ export namespace Prisma {
       languages: boolean
       doNotTrack: boolean
       pixelDepth: boolean
-      canvasActive: boolean
+      canvas: boolean
+      webgl: boolean
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["settingsFingerprint"]>
@@ -4358,7 +4357,8 @@ export namespace Prisma {
     readonly languages: FieldRef<"SettingsFingerprint", 'Boolean'>
     readonly doNotTrack: FieldRef<"SettingsFingerprint", 'Boolean'>
     readonly pixelDepth: FieldRef<"SettingsFingerprint", 'Boolean'>
-    readonly canvasActive: FieldRef<"SettingsFingerprint", 'Boolean'>
+    readonly canvas: FieldRef<"SettingsFingerprint", 'Boolean'>
+    readonly webgl: FieldRef<"SettingsFingerprint", 'Boolean'>
     readonly createdAt: FieldRef<"SettingsFingerprint", 'DateTime'>
     readonly updatedAt: FieldRef<"SettingsFingerprint", 'DateTime'>
   }
@@ -5559,9 +5559,8 @@ export namespace Prisma {
     password: 'password',
     role: 'role',
     isVerified: 'isVerified',
-    firstFingerprint: 'firstFingerprint',
+    currentFingerprint: 'currentFingerprint',
     fingerprints: 'fingerprints',
-    lastFingerprint: 'lastFingerprint',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -5652,7 +5651,8 @@ export namespace Prisma {
     languages: 'languages',
     doNotTrack: 'doNotTrack',
     pixelDepth: 'pixelDepth',
-    canvasActive: 'canvasActive',
+    canvas: 'canvas',
+    webgl: 'webgl',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -5790,9 +5790,8 @@ export namespace Prisma {
     password?: StringFilter<"User"> | string
     role?: EnumUserRoleFilter<"User"> | $Enums.UserRole
     isVerified?: BoolFilter<"User"> | boolean
-    firstFingerprint?: StringNullableFilter<"User"> | string | null
+    currentFingerprint?: StringNullableFilter<"User"> | string | null
     fingerprints?: StringNullableListFilter<"User">
-    lastFingerprint?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
   }
@@ -5803,9 +5802,8 @@ export namespace Prisma {
     password?: SortOrder
     role?: SortOrder
     isVerified?: SortOrder
-    firstFingerprint?: SortOrderInput | SortOrder
+    currentFingerprint?: SortOrderInput | SortOrder
     fingerprints?: SortOrder
-    lastFingerprint?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -5819,9 +5817,8 @@ export namespace Prisma {
     password?: StringFilter<"User"> | string
     role?: EnumUserRoleFilter<"User"> | $Enums.UserRole
     isVerified?: BoolFilter<"User"> | boolean
-    firstFingerprint?: StringNullableFilter<"User"> | string | null
+    currentFingerprint?: StringNullableFilter<"User"> | string | null
     fingerprints?: StringNullableListFilter<"User">
-    lastFingerprint?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
   }, "id" | "email">
@@ -5832,9 +5829,8 @@ export namespace Prisma {
     password?: SortOrder
     role?: SortOrder
     isVerified?: SortOrder
-    firstFingerprint?: SortOrderInput | SortOrder
+    currentFingerprint?: SortOrderInput | SortOrder
     fingerprints?: SortOrder
-    lastFingerprint?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
@@ -5851,9 +5847,8 @@ export namespace Prisma {
     password?: StringWithAggregatesFilter<"User"> | string
     role?: EnumUserRoleWithAggregatesFilter<"User"> | $Enums.UserRole
     isVerified?: BoolWithAggregatesFilter<"User"> | boolean
-    firstFingerprint?: StringNullableWithAggregatesFilter<"User"> | string | null
+    currentFingerprint?: StringNullableWithAggregatesFilter<"User"> | string | null
     fingerprints?: StringNullableListFilter<"User">
-    lastFingerprint?: StringNullableWithAggregatesFilter<"User"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
@@ -5985,7 +5980,8 @@ export namespace Prisma {
     languages?: BoolFilter<"SettingsFingerprint"> | boolean
     doNotTrack?: BoolFilter<"SettingsFingerprint"> | boolean
     pixelDepth?: BoolFilter<"SettingsFingerprint"> | boolean
-    canvasActive?: BoolFilter<"SettingsFingerprint"> | boolean
+    canvas?: BoolFilter<"SettingsFingerprint"> | boolean
+    webgl?: BoolFilter<"SettingsFingerprint"> | boolean
     createdAt?: DateTimeFilter<"SettingsFingerprint"> | Date | string
     updatedAt?: DateTimeFilter<"SettingsFingerprint"> | Date | string
   }
@@ -6062,7 +6058,8 @@ export namespace Prisma {
     languages?: SortOrder
     doNotTrack?: SortOrder
     pixelDepth?: SortOrder
-    canvasActive?: SortOrder
+    canvas?: SortOrder
+    webgl?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -6142,7 +6139,8 @@ export namespace Prisma {
     languages?: BoolFilter<"SettingsFingerprint"> | boolean
     doNotTrack?: BoolFilter<"SettingsFingerprint"> | boolean
     pixelDepth?: BoolFilter<"SettingsFingerprint"> | boolean
-    canvasActive?: BoolFilter<"SettingsFingerprint"> | boolean
+    canvas?: BoolFilter<"SettingsFingerprint"> | boolean
+    webgl?: BoolFilter<"SettingsFingerprint"> | boolean
     createdAt?: DateTimeFilter<"SettingsFingerprint"> | Date | string
     updatedAt?: DateTimeFilter<"SettingsFingerprint"> | Date | string
   }, "id">
@@ -6219,7 +6217,8 @@ export namespace Prisma {
     languages?: SortOrder
     doNotTrack?: SortOrder
     pixelDepth?: SortOrder
-    canvasActive?: SortOrder
+    canvas?: SortOrder
+    webgl?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: SettingsFingerprintCountOrderByAggregateInput
@@ -6302,7 +6301,8 @@ export namespace Prisma {
     languages?: BoolWithAggregatesFilter<"SettingsFingerprint"> | boolean
     doNotTrack?: BoolWithAggregatesFilter<"SettingsFingerprint"> | boolean
     pixelDepth?: BoolWithAggregatesFilter<"SettingsFingerprint"> | boolean
-    canvasActive?: BoolWithAggregatesFilter<"SettingsFingerprint"> | boolean
+    canvas?: BoolWithAggregatesFilter<"SettingsFingerprint"> | boolean
+    webgl?: BoolWithAggregatesFilter<"SettingsFingerprint"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"SettingsFingerprint"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"SettingsFingerprint"> | Date | string
   }
@@ -6370,9 +6370,8 @@ export namespace Prisma {
     password: string
     role?: $Enums.UserRole
     isVerified?: boolean
-    firstFingerprint?: string | null
+    currentFingerprint?: string | null
     fingerprints?: UserCreatefingerprintsInput | string[]
-    lastFingerprint?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -6383,9 +6382,8 @@ export namespace Prisma {
     password: string
     role?: $Enums.UserRole
     isVerified?: boolean
-    firstFingerprint?: string | null
+    currentFingerprint?: string | null
     fingerprints?: UserCreatefingerprintsInput | string[]
-    lastFingerprint?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -6396,9 +6394,8 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     isVerified?: BoolFieldUpdateOperationsInput | boolean
-    firstFingerprint?: NullableStringFieldUpdateOperationsInput | string | null
+    currentFingerprint?: NullableStringFieldUpdateOperationsInput | string | null
     fingerprints?: UserUpdatefingerprintsInput | string[]
-    lastFingerprint?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -6409,9 +6406,8 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     isVerified?: BoolFieldUpdateOperationsInput | boolean
-    firstFingerprint?: NullableStringFieldUpdateOperationsInput | string | null
+    currentFingerprint?: NullableStringFieldUpdateOperationsInput | string | null
     fingerprints?: UserUpdatefingerprintsInput | string[]
-    lastFingerprint?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -6422,9 +6418,8 @@ export namespace Prisma {
     password: string
     role?: $Enums.UserRole
     isVerified?: boolean
-    firstFingerprint?: string | null
+    currentFingerprint?: string | null
     fingerprints?: UserCreatefingerprintsInput | string[]
-    lastFingerprint?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -6435,9 +6430,8 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     isVerified?: BoolFieldUpdateOperationsInput | boolean
-    firstFingerprint?: NullableStringFieldUpdateOperationsInput | string | null
+    currentFingerprint?: NullableStringFieldUpdateOperationsInput | string | null
     fingerprints?: UserUpdatefingerprintsInput | string[]
-    lastFingerprint?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -6448,9 +6442,8 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
     isVerified?: BoolFieldUpdateOperationsInput | boolean
-    firstFingerprint?: NullableStringFieldUpdateOperationsInput | string | null
+    currentFingerprint?: NullableStringFieldUpdateOperationsInput | string | null
     fingerprints?: UserUpdatefingerprintsInput | string[]
-    lastFingerprint?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -6583,7 +6576,8 @@ export namespace Prisma {
     languages?: boolean
     doNotTrack?: boolean
     pixelDepth?: boolean
-    canvasActive?: boolean
+    canvas?: boolean
+    webgl?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -6660,7 +6654,8 @@ export namespace Prisma {
     languages?: boolean
     doNotTrack?: boolean
     pixelDepth?: boolean
-    canvasActive?: boolean
+    canvas?: boolean
+    webgl?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -6737,7 +6732,8 @@ export namespace Prisma {
     languages?: BoolFieldUpdateOperationsInput | boolean
     doNotTrack?: BoolFieldUpdateOperationsInput | boolean
     pixelDepth?: BoolFieldUpdateOperationsInput | boolean
-    canvasActive?: BoolFieldUpdateOperationsInput | boolean
+    canvas?: BoolFieldUpdateOperationsInput | boolean
+    webgl?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -6814,7 +6810,8 @@ export namespace Prisma {
     languages?: BoolFieldUpdateOperationsInput | boolean
     doNotTrack?: BoolFieldUpdateOperationsInput | boolean
     pixelDepth?: BoolFieldUpdateOperationsInput | boolean
-    canvasActive?: BoolFieldUpdateOperationsInput | boolean
+    canvas?: BoolFieldUpdateOperationsInput | boolean
+    webgl?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -6891,7 +6888,8 @@ export namespace Prisma {
     languages?: boolean
     doNotTrack?: boolean
     pixelDepth?: boolean
-    canvasActive?: boolean
+    canvas?: boolean
+    webgl?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -6968,7 +6966,8 @@ export namespace Prisma {
     languages?: BoolFieldUpdateOperationsInput | boolean
     doNotTrack?: BoolFieldUpdateOperationsInput | boolean
     pixelDepth?: BoolFieldUpdateOperationsInput | boolean
-    canvasActive?: BoolFieldUpdateOperationsInput | boolean
+    canvas?: BoolFieldUpdateOperationsInput | boolean
+    webgl?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -7045,7 +7044,8 @@ export namespace Prisma {
     languages?: BoolFieldUpdateOperationsInput | boolean
     doNotTrack?: BoolFieldUpdateOperationsInput | boolean
     pixelDepth?: BoolFieldUpdateOperationsInput | boolean
-    canvasActive?: BoolFieldUpdateOperationsInput | boolean
+    canvas?: BoolFieldUpdateOperationsInput | boolean
+    webgl?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -7185,9 +7185,8 @@ export namespace Prisma {
     password?: SortOrder
     role?: SortOrder
     isVerified?: SortOrder
-    firstFingerprint?: SortOrder
+    currentFingerprint?: SortOrder
     fingerprints?: SortOrder
-    lastFingerprint?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -7198,8 +7197,7 @@ export namespace Prisma {
     password?: SortOrder
     role?: SortOrder
     isVerified?: SortOrder
-    firstFingerprint?: SortOrder
-    lastFingerprint?: SortOrder
+    currentFingerprint?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -7210,8 +7208,7 @@ export namespace Prisma {
     password?: SortOrder
     role?: SortOrder
     isVerified?: SortOrder
-    firstFingerprint?: SortOrder
-    lastFingerprint?: SortOrder
+    currentFingerprint?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -7380,7 +7377,8 @@ export namespace Prisma {
     languages?: SortOrder
     doNotTrack?: SortOrder
     pixelDepth?: SortOrder
-    canvasActive?: SortOrder
+    canvas?: SortOrder
+    webgl?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -7457,7 +7455,8 @@ export namespace Prisma {
     languages?: SortOrder
     doNotTrack?: SortOrder
     pixelDepth?: SortOrder
-    canvasActive?: SortOrder
+    canvas?: SortOrder
+    webgl?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -7534,7 +7533,8 @@ export namespace Prisma {
     languages?: SortOrder
     doNotTrack?: SortOrder
     pixelDepth?: SortOrder
-    canvasActive?: SortOrder
+    canvas?: SortOrder
+    webgl?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }

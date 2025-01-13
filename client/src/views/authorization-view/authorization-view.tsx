@@ -1,10 +1,21 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { Controller } from 'react-hook-form'
-import { useAtom } from 'jotai'
+import { useAtom, useSetAtom } from 'jotai'
 
-import { Authorization, authorizationSchema, getFingerprint, useAuthorization } from '@/src/features'
+import {
+  Authorization,
+  authorizationSchema,
+  CONFIRMATION_URLS,
+  getFingerprint,
+  isAdminAtom,
+  isAdminRole,
+  Role,
+  useAuthorization,
+  userEmailAtom,
+} from '@/src/features'
 import { SettingsIcon } from '@/src/shared/assets/svg'
 import { inputClassNames } from '@/src/shared/styles'
 import { SettingsForm } from '@/src/widgets'
@@ -16,18 +27,35 @@ import { useFormInitializer } from '@/src/shared/libraries'
 import { BaseFormWrapper, PasswordInput } from '@/src/shared/ui'
 
 export const AuthorizationView = () => {
+  const router = useRouter()
+
   const [isOpen, setIsOpen] = useState(false)
   const [rememberMe, setRememberMe] = useAtom(rememberMeAtom)
+  const [isAdmin, setIsAdmin] = useAtom(isAdminAtom)
+  const setUserEmail = useSetAtom(userEmailAtom)
 
-  const { Form, control, setValue } = useFormInitializer({
+  const { Form, control, setValue, getValues } = useFormInitializer({
     baseSchema: authorizationSchema,
   })
 
-  const { mutate: authorize, isPending: isPendingAuthorization } = useAuthorization()
+  const { mutate: authorize, isPending: isPendingAuthorization } = useAuthorization({
+    onSuccess: (data) => {
+      if (isAdminRole(data.role)) {
+        setIsAdmin(true)
+        return
+      }
+    },
+    onError: (error) => {
+      if (error.response?.status === 403) {
+        router.push(CONFIRMATION_URLS.AUTHORIZATION)
+      }
+    },
+  })
 
   const onAuthorization = async (data: Authorization) => {
+    setUserEmail(getValues('email'))
     const fingerprint = JSON.stringify(await getFingerprint())
-    authorize({ ...data, fingerprint })
+    authorize({ ...data, currentFingerprint: fingerprint })
   }
 
   getFingerprint().then((data) => {
@@ -109,6 +137,18 @@ export const AuthorizationView = () => {
         <SettingsIcon width={24} height={24} />
       </Button>
       <SettingsForm isOpen={isOpen} setIsOpen={setIsOpen} />
+      {isAdmin && (
+        <>
+          <Button
+            isIconOnly
+            onPress={() => setIsOpen(true)}
+            className='absolute top-8 right-8 rounded-full bg-gradient-to-r from-[#60A5FA] to-[#3B82F6] hover:opacity-90 text-white shadow-md shadow-[#2563EB]/50'
+          >
+            <SettingsIcon width={24} height={24} />
+          </Button>
+          <SettingsForm isOpen={isOpen} setIsOpen={setIsOpen} />
+        </>
+      )}
     </>
   )
 }

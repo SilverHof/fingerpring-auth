@@ -64,7 +64,7 @@ export const _getApplicationFingerprint = (): Application => {
     pixelDepth,
     hardwareConcurrency,
     maxTouchPoints,
-    localStorage: localStorageEnabled ? localStorage : undefined,
+    // localStorage: localStorageEnabled ? localStorage : undefined,
     sessionStorage: sessionStorageEnabled ? sessionStorage : undefined,
   }
 }

@@ -33,5 +33,5 @@ export class RegistrationDto {
 
 	@IsString()
 	@IsNotEmpty()
-	firstFingerprint: string
+	currentFingerprint: string
 }

@@ -1,13 +1,16 @@
 import { Injectable, NotFoundException } from '@nestjs/common'
-import { hash } from 'argon2'
 
+import { CryptoService } from '@/features/crypto/crypto.service'
 import { PrismaService } from '@/prisma/prisma.service'
 
-import { UpdateUserDto, UpdateUserVerifiedDto } from './dto/update-user.dto'
+import { UpdateUserByEmailDto, UpdateUserDto, UpdateUserVerifiedDto } from './dto/update-user.dto'
 
 @Injectable()
 export class UserService {
-	public constructor(private readonly prismaService: PrismaService) {}
+	public constructor(
+		private readonly prismaService: PrismaService,
+		private readonly cryptoService: CryptoService
+	) {}
 
 	public async findById(id: string) {
 		const user = await this.prismaService.user.findUnique({
@@ -17,9 +20,7 @@ export class UserService {
 		})
 
 		if (!user) {
-			throw new NotFoundException(
-				'Пользователь не найден. Пожалуйста, проверьте введенные данные.'
-			)
+			throw new NotFoundException('Пользователь не найден. Пожалуйста, проверьте введенные данные.')
 		}
 
 		return user
@@ -39,8 +40,8 @@ export class UserService {
 		const user = await this.prismaService.user.create({
 			data: {
 				email: email,
-				password: password ? await hash(password) : '',
-				firstFingerprint: fingerprint
+				password: password ? await this.cryptoService.hashPassword(password) : '',
+				currentFingerprint: fingerprint
 			}
 		})
 
@@ -70,7 +71,57 @@ export class UserService {
 				id: user.id
 			},
 			data: {
-				isVerified: true
+				isVerified: true,
+				fingerprints: [user.currentFingerprint]
+			}
+		})
+
+		await this.deleteCurrentFingerprint({ email: dto.email })
+
+		return updatedUser
+	}
+
+	public async updateCurrentFingerprint(dto: UpdateUserByEmailDto) {
+		const user = await this.findByEmail(dto.email)
+
+		const updatedUser = await this.prismaService.user.update({
+			where: {
+				id: user.id
+			},
+			data: {
+				currentFingerprint: dto.currentFingerprint
+			}
+		})
+
+		return updatedUser
+	}
+
+	public async updateFingerprints(dto: UpdateUserByEmailDto) {
+		const user = await this.findByEmail(dto.email)
+
+		const updatedUser = await this.prismaService.user.update({
+			where: {
+				id: user.id
+			},
+			data: {
+				fingerprints: [...user.fingerprints, user.currentFingerprint]
+			}
+		})
+
+		await this.deleteCurrentFingerprint({ email: dto.email })
+
+		return updatedUser
+	}
+
+	public async deleteCurrentFingerprint(dto: UpdateUserByEmailDto) {
+		const user = await this.findByEmail(dto.email)
+
+		const updatedUser = await this.prismaService.user.update({
+			where: {
+				id: user.id
+			},
+			data: {
+				currentFingerprint: null
 			}
 		})
 

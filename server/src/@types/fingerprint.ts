@@ -3,7 +3,7 @@ export interface Fingerprint {
   screen: Screen
   device: Device
   timezone: Timezone
-  network: Network
+  // network: Network
   application: Application
   canvas: string
   webgl: string

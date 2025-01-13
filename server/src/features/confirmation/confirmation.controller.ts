@@ -1,18 +1,4 @@
-import {
-	BadRequestException,
-	Body,
-	Controller,
-	Get,
-	HttpCode,
-	HttpStatus,
-	Param,
-	Post,
-	Query,
-	Req,
-	Res,
-	UseGuards
-} from '@nestjs/common'
-import { Request, Response } from 'express'
+import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common'
 
 import { ConfirmationService } from './confirmation.service'
 import { ConfirmationDto } from './dto/confirmation.dto'
@@ -30,12 +16,12 @@ export class ConfirmationController {
 		return this.confirmationService.registration(dto)
 	}
 
-	// // route для авторизации
-	// @Post('confirmation/authorization')
-	// @HttpCode(HttpStatus.OK)
-	// public async login(@Req() req: Request, @Body() dto: AuthorizationDta) {
-	// 	return this.confirmationService.authorization(req, dto)
-	// }
+	// route для регистрации
+	@Post('authorization')
+	@HttpCode(HttpStatus.OK)
+	public async authorization(@Body() dto: ConfirmationDto) {
+		return this.confirmationService.authorization(dto)
+	}
 
 	// // route для выхода из аккаунта
 	// @Post('confirmation/password-recovery')
