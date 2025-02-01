@@ -82,6 +82,7 @@ export class AuthService {
 
 	private parseAndFilter(fingerprintStr: string, settings: Record<string, boolean | string | Date>) {
 		// преобразуем строчку в объект
+		console.log('fingerprintStr', fingerprintStr)
 		const fingerprint = JSON.parse(fingerprintStr) as Fingerprint
 
 		// трансформируем цифровой отпечаток под форму настроек
@@ -112,13 +113,19 @@ export class AuthService {
 
 		// Преобразуем отфильтрованные значения в строку
 		const currentFingerprintFiltered = this.parseAndFilter(dto.currentFingerprint, settingsFingerprint)
-
+		console.log('user.fingerprints', user.fingerprints)
 		// Проверяем каждый сохраненный цифровой отпечаток с новым полученным
-		const isEqualsFingerprints = user.fingerprints.some((fingerprintStr: string) => {
-			const settingsFingerprintFiltered = this.parseAndFilter(fingerprintStr, settingsFingerprint)
+		const isEqualsFingerprints = user.fingerprints
+			.map(encryptedFingerprint => {
+				const decrypted = this.cryptoService.decrypt(this.cryptoService.decrypt(encryptedFingerprint))
+				console.log('Decrypted Fingerprint:', decrypted)
+				return decrypted
+			})
+			.some(decryptedFingerprint => {
+				const settingsFingerprintFiltered = this.parseAndFilter(decryptedFingerprint, settingsFingerprint)
 
-			return settingsFingerprintFiltered === currentFingerprintFiltered
-		})
+				return settingsFingerprintFiltered === currentFingerprintFiltered
+			})
 
 		return isEqualsFingerprints
 	}

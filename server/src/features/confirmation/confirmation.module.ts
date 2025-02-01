@@ -6,9 +6,10 @@ import { UserVerifyTokenService } from '../user-verify-token/user-verify-token.s
 
 import { ConfirmationController } from './confirmation.controller'
 import { ConfirmationService } from './confirmation.service'
+import { CryptoService } from '../crypto/crypto.service'
 
 @Module({
 	controllers: [ConfirmationController],
-	providers: [ConfirmationService, UserService, UserVerifyTokenService]
+	providers: [ConfirmationService, UserService, UserVerifyTokenService, CryptoService]
 })
 export class ConfirmationModule {}

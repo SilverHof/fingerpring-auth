@@ -41,7 +41,7 @@ export class UserService {
 			data: {
 				email: email,
 				password: password ? await this.cryptoService.hashPassword(password) : '',
-				currentFingerprint: fingerprint
+				currentFingerprint: this.cryptoService.encrypt(fingerprint)
 			}
 		})
 
@@ -72,7 +72,7 @@ export class UserService {
 			},
 			data: {
 				isVerified: true,
-				fingerprints: [user.currentFingerprint]
+				fingerprints: [this.cryptoService.encrypt(user.currentFingerprint)]
 			}
 		})
 
@@ -104,7 +104,7 @@ export class UserService {
 				id: user.id
 			},
 			data: {
-				fingerprints: [...user.fingerprints, user.currentFingerprint]
+				fingerprints: [...user.fingerprints, this.cryptoService.encrypt(user.currentFingerprint)]
 			}
 		})
 
